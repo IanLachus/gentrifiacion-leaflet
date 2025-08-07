@@ -6,13 +6,13 @@ import L from 'leaflet';
 import Register from './components/Register';
 import Login from './components/Login'; 
 import Intro from './components/Intro';
-import Main from './components/Main';
+// import Main from './components/Main';
 // Tablas
-import TablaBarrios from './components/TablaBarrios';
-import TablaEdificios from './components/TablaEdificios';
-import TablaPreciosVivienda from './components/TablaPreciosVivienda';
-import TablaNegociosLocales from './components/TablaNegociosLocales';
-import TablaEventosDesplazamiento from './components/TablaEventosDesplazamiento';
+// import TablaBarrios from './components/TablaBarrios';
+// import TablaEdificios from './components/TablaEdificios';
+// import TablaPreciosVivienda from './components/TablaPreciosVivienda';
+// import TablaNegociosLocales from './components/TablaNegociosLocales';
+// import TablaEventosDesplazamiento from './components/TablaEventosDesplazamiento';
 import TablaSegregacionSocial from './components/TablaSegregacionSocial';
 import TablaDesplazamientoBarrios from './components/TablaDesplazamientoBarrios';
 import TablaDesplazamientoZonasCosteras from './components/TablaDesplazamientoZonasCosteras';
@@ -42,26 +42,26 @@ L.Icon.Default.mergeOptions({
 });
 
 const zonasCosteras = [
-  { id: 1, name: "Puntarenas Centro", coords: [9.9768, -84.8373], description: "El desarrollo turístico ha generado aumento en los precios y desplazamiento de comunidades costeras tradicionales." },
-  { id: 2, name: "Jacó", coords: [9.6237, -84.6333], description: "La construcción de condominios y hoteles de lujo ha provocado el aumento del costo de vida para los residentes originales." },
-  { id: 3, name: "Limón Centro", coords: [9.9905, -83.0350], description: "Las mejoras en infraestructura han atraído inversión turística que está desplazando a comunidades vulnerables." },
-  { id: 4, name: "Cahuita", coords: [9.7412, -82.8378], description: "El auge turístico ha transformado la economía local, afectando el acceso a vivienda para los residentes." },
-  { id: 5, name: "Puerto Viejo", coords: [9.6687, -82.7510], description: "Zona de alto turismo internacional, con desplazamiento cultural y encarecimiento de la vida." },
-  { id: 6, name: "Tamarindo", coords: [10.2991, -85.8415], description: "El turismo masivo ha convertido esta playa en un centro comercializado, con impacto en las comunidades locales." },
-  { id: 7, name: "Nosara", coords: [9.9792, -85.6641], description: "El crecimiento de villas de lujo y turismo de yoga ha aumentado la exclusión social y económica." },
-  { id: 8, name: "Santa Teresa", coords: [9.6395, -85.1602], description: "Popular entre extranjeros, los precios de propiedad y alquiler se han disparado." },
-  { id: 9, name: "Manuel Antonio", coords: [9.3899, -84.1393], description: "Zona de alto turismo donde los habitantes locales se ven desplazados por la expansión hotelera." },
-  { id: 10, name: "Dominical", coords: [9.3256, -83.8853], description: "El desarrollo inmobiliario para turistas ha reducido el acceso a servicios y tierras locales." },
-  { id: 11, name: "Herradura", coords: [9.6351, -84.6363], description: "El turismo de lujo ha reemplazado muchas viviendas tradicionales." },
-  { id: 12, name: "Playa Hermosa", coords: [9.6453, -84.6345], description: "El auge de surfistas extranjeros ha cambiado el tejido social local." },
-  { id: 13, name: "Playas del Coco", coords: [10.5531, -85.6393], description: "Gran cantidad de inversión extranjera ha desplazado a residentes por especulación inmobiliaria." },
-  { id: 14, name: "Sámara", coords: [9.8964, -85.1712], description: "La presión por convertir casas en Airbnb ha afectado a inquilinos locales." },
-  { id: 15, name: "Mal País", coords: [9.6398, -85.1633], description: "El crecimiento turístico ha generado desplazamiento de familias locales y aumento en precios." },
-  { id: 16, name: "Uvita", coords: [9.1561, -83.8176], description: "El auge de visitantes ha hecho que muchas casas se conviertan en alojamientos turísticos." },
-  { id: 17, name: "Monteverde", coords: [10.2765, -84.7833], description: "Aunque no está en la costa, se ha visto afectada por el turismo desmedido y alzas en la tierra." },
-  { id: 18, name: "Pochote", coords: [9.8990, -85.1720], description: "La construcción de proyectos turísticos ha despojado tierras comunales." },
-  { id: 19, name: "Isla Chira", coords: [10.1582, -85.0721], description: "Proyectos turísticos han generado tensiones entre desarrollo y conservación local." },
-  { id: 20, name: "Bahía Ballena", coords: [9.1056, -83.7430], description: "El turismo en auge ha generado un cambio en el uso del suelo, afectando a los habitantes." },
+  { id: 1, name: "Puntarenas Centro", coords: [9.9768, -84.8373], description: "El impulso al turismo de cruceros y el desarrollo de hoteles han aumentado los precios, desplazando a familias tradicionales y cambiando la oferta comercial hacia turistas." },
+  { id: 2, name: "Jacó", coords: [9.6237, -84.6333], description: "La construcción de condominios y hoteles de lujo para turistas extranjeros elevó el costo de vida, dificultando el acceso a vivienda para la población local." },
+  { id: 3, name: "Limón Centro", coords: [9.9905, -83.0350], description: "Las mejoras en infraestructura y la llegada de inversión turística han desplazado a comunidades vulnerables y cambiado el perfil del centro urbano." },
+  { id: 4, name: "Cahuita", coords: [9.7412, -82.8378], description: "El auge turístico ha incrementado la demanda de propiedades, generando presión sobre viviendas tradicionales y tierras comunales afrodescendientes." },
+  { id: 5, name: "Puerto Viejo", coords: [9.6687, -82.7510], description: "La compra de propiedades por extranjeros y la conversión de viviendas en alquileres turísticos han encarecido la vida y reducido el acceso a vivienda para residentes originales." },
+  { id: 6, name: "Tamarindo", coords: [10.2991, -85.8415], description: "El turismo masivo transformó la economía local, con especulación inmobiliaria, aumento de precios y desplazamiento de la comunidad costera tradicional." },
+  { id: 7, name: "Nosara", coords: [9.9792, -85.6641], description: "El crecimiento de villas de lujo y el turismo de yoga han provocado exclusión social y económica, desplazando a residentes de largo plazo." },
+  { id: 8, name: "Santa Teresa", coords: [9.6395, -85.1602], description: "La popularidad internacional generó alzas extremas en precios de propiedad y alquiler, expulsando a familias costarricenses de la zona." },
+  { id: 9, name: "Manuel Antonio", coords: [9.3899, -84.1393], description: "El desarrollo hotelero orientado al turismo extranjero elevó los costos y desplazó a residentes hacia zonas menos valorizadas." },
+  { id: 10, name: "Dominical", coords: [9.3256, -83.8853], description: "La venta de terrenos y el desarrollo inmobiliario para visitantes han reducido el acceso a servicios y tierras para locales." },
+  { id: 11, name: "Herradura", coords: [9.6351, -84.6363], description: "El turismo de lujo y la urbanización han reemplazado viviendas tradicionales por condominios y hoteles de alto costo." },
+  { id: 12, name: "Playa Hermosa", coords: [9.6453, -84.6345], description: "La llegada de surfistas extranjeros y la inversión internacional han cambiado el tejido social y la dinámica comercial." },
+  { id: 13, name: "Playas del Coco", coords: [10.5531, -85.6393], description: "El auge de resorts y la inversión extranjera dispararon los precios de terrenos y viviendas, expulsando a comunidades pesqueras históricas." },
+  { id: 14, name: "Sámara", coords: [9.8964, -85.1712], description: "El aumento de alquileres turísticos, especialmente Airbnb, afecta a inquilinos locales y transforma el comercio tradicional." },
+  { id: 15, name: "Mal País", coords: [9.6398, -85.1633], description: "El crecimiento de proyectos turísticos ha generado el desplazamiento de familias locales y un aumento en el costo de vida." },
+  { id: 16, name: "Uvita", coords: [9.1561, -83.8176], description: "La transformación de viviendas en alquileres turísticos y la llegada masiva de visitantes han cambiado la economía y encarecido la zona." },
+  { id: 17, name: "Monteverde", coords: [10.2765, -84.7833], description: "El turismo masivo y la compra de tierras para alojamientos han incrementado los precios y desplazado a pobladores tradicionales." },
+  { id: 18, name: "Pochote", coords: [9.8990, -85.1720], description: "La construcción de proyectos turísticos en tierras comunales ha despojado a las comunidades de espacios tradicionales." },
+  { id: 19, name: "Isla Chira", coords: [10.1582, -85.0721], description: "Los proyectos turísticos y conservacionistas han alterado modos de vida tradicionales y aumentado la tensión social." },
+  { id: 20, name: "Bahía Ballena", coords: [9.1056, -83.7430], description: "El auge turístico y la urbanización han provocado cambios en el uso del suelo y desplazamiento de residentes por nuevos desarrollos." },
 ];
 
 const SECCIONES = [
@@ -186,7 +186,7 @@ const SECCIONES = [
     nombre: 'Mapa de zonas afectadas',
     contenido: ({ onVerMas, selectedZona, onCerrar }) => (
       <div>
-        <h2>🗺️ Mapa de zonas costeras afectadas</h2>
+        <h2>Mapa de zonas costeras afectadas</h2>
         <div className="map-section">
           <MapContainer center={[9.7489, -83.7534]} zoom={7} className="leaflet-map" >
             <TileLayer

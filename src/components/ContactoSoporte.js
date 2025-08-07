@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "./ContactoSoporte.css";
 import ilustracion from "../assets/Contact us-bro.png";
 import { FaWhatsapp } from "react-icons/fa";
-import { PiHandshakeFill } from "react-icons/pi";
-
-
+import Swal from "sweetalert2"; // 👈 nuevo import
 
 export default function ContactoSoporte() {
   const [form, setForm] = useState({
@@ -20,7 +18,16 @@ export default function ContactoSoporte() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    alert("¡Gracias por tu mensaje! Te responderemos pronto.");
+
+    // Mostrar alerta moderna al enviar
+    Swal.fire({
+      title: '¡Mensaje enviado!',
+      text: 'Gracias por contactarnos. Te responderemos pronto.',
+      icon: 'success',
+      confirmButtonText: 'Cerrar',
+      confirmButtonColor: '#228855'
+    });
+
     setForm({ nombre: "", email: "", telefono: "", mensaje: "" });
   };
 
@@ -30,8 +37,7 @@ export default function ContactoSoporte() {
         {/* IZQUIERDA */}
         <div className="contacto-info">
           <h2>
-            ¿En qué podemos ayudarte?{" "}
-            <span role="img" aria-label="manos">🤝</span>
+            ¿En qué podemos ayudarte? <span role="img" aria-label="manos">🤝</span>
           </h2>
           <p className="contacto-sub">
             Cuéntanos tu aporte, tu consulta o inquietud sobre la gentrificación en Costa Rica.
@@ -50,6 +56,7 @@ export default function ContactoSoporte() {
             </div>
           </div>
         </div>
+
         {/* DERECHA */}
         <form className="contacto-form" onSubmit={handleSubmit}>
           <h3>Escríbenos aquí</h3>
