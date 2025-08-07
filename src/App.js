@@ -7,12 +7,16 @@ import Register from './components/Register';
 import Login from './components/Login'; 
 import Intro from './components/Intro';
 import Main from './components/Main';
+// Tablas
 import TablaBarrios from './components/TablaBarrios';
 import TablaEdificios from './components/TablaEdificios';
 import TablaPreciosVivienda from './components/TablaPreciosVivienda';
 import TablaNegociosLocales from './components/TablaNegociosLocales';
 import TablaEventosDesplazamiento from './components/TablaEventosDesplazamiento';
 import TablaSegregacionSocial from './components/TablaSegregacionSocial';
+import TablaDesplazamientoBarrios from './components/TablaDesplazamientoBarrios';
+import TablaDesplazamientoZonasCosteras from './components/TablaDesplazamientoZonasCosteras';
+// Termina tabla
 import SeccionVideos from './components/SeccionVideos';
 import ContactoSoporte from './components/ContactoSoporte';
 import HighlightFlipBox from "./components/HighlightFlipBox";
@@ -120,12 +124,12 @@ const SECCIONES = [
         />
       </div>
 
-      <p className="info-bottom" style={{ marginTop: 18 }}>
+      <p className="info-bottom" style={{ marginTop: 30, marginBottom: 0}}>
         <b>¿Qué hacer?</b> Promover <span className="resaltado">vivienda asequible</span> y proteger a inquilinos son acciones clave para evitar el desplazamiento forzado y conservar la esencia de cada barrio.
-      </p>
+      </p><br></br>
     </div>
   ),
-},
+  },
   {
     id: 'elementos',
     nombre: 'Elementos de la gentrificación',
@@ -264,7 +268,12 @@ function App() {
 
           {/* Solo la tabla correspondiente a la sección activa */}
           {seccionActiva === 'segregacion' && <TablaSegregacionSocial />}
-          {seccionActiva === 'desplazamiento' && <TablaEdificios />}
+          {seccionActiva === 'desplazamiento' && (
+            <div>
+              <TablaDesplazamientoBarrios />
+              <TablaDesplazamientoZonasCosteras />
+            </div>
+          )}
           {seccionActiva === 'elementos' && <TablaPreciosVivienda />}
           {seccionActiva === 'identidad' && <TablaNegociosLocales />}
           {seccionActiva === 'mapa' && <TablaEventosDesplazamiento />}

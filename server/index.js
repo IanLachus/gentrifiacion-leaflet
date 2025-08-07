@@ -67,6 +67,60 @@ db.serialize(() => {
     observaciones TEXT
   )`);
 
+    // Tabla 7: Desplazamiento Barrios
+  db.run(`CREATE TABLE IF NOT EXISTS desplazamiento_barrios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    barrio TEXT,
+    anio INTEGER,
+    personas_desplazadas INTEGER,
+    motivo TEXT,
+    nuevo_destino TEXT
+  )`);
+
+  db.get('SELECT COUNT(*) as count FROM desplazamiento_barrios', (err, row) => {
+    if (row.count === 0) {
+      db.run(`INSERT INTO desplazamiento_barrios 
+        (barrio, anio, personas_desplazadas, motivo, nuevo_destino) VALUES
+        ('Barrio Amón', 2021, 36, 'Aumento alquileres', 'Goicoechea'),
+        ('Escalante', 2022, 58, 'Nuevos desarrollos inmobiliarios', 'Guadalupe'),
+        ('Barrio Otoya', 2021, 15, 'Remodelaciones y venta de viviendas', 'Heredia'),
+        ('Barrio La California', 2023, 44, 'Expansión de restaurantes y bares', 'Desamparados'),
+        ('Barrio México', 2020, 29, 'Aumento del costo de vida', 'Alajuelita'),
+        ('San Pedro', 2023, 60, 'Residencias estudiantiles y Airbnb', 'Sabanilla'),
+        ('Pavas', 2021, 18, 'Cambios en uso de suelo', 'Hatillo'),
+        ('Rohrmoser', 2022, 23, 'Nuevas torres residenciales', 'Tibás')
+      `);
+    }
+  });
+
+  // Tabla 8: Desplazamiento Zonas Costeras
+  db.run(`CREATE TABLE IF NOT EXISTS desplazamiento_zonas_costeras (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    zona TEXT,
+    anio INTEGER,
+    personas_desplazadas INTEGER,
+    motivo TEXT,
+    nuevo_destino TEXT
+  )`);
+
+  db.get('SELECT COUNT(*) as count FROM desplazamiento_zonas_costeras', (err, row) => {
+    if (row.count === 0) {
+      db.run(`INSERT INTO desplazamiento_zonas_costeras 
+        (zona, anio, personas_desplazadas, motivo, nuevo_destino) VALUES
+        ('Tamarindo', 2022, 110, 'Aumento de alquileres por turismo', 'Santa Cruz'),
+        ('Puerto Viejo', 2023, 85, 'Venta de propiedades a extranjeros', 'Limón Centro'),
+        ('Nosara', 2021, 70, 'Nuevos condominios y resorts', 'Nicoya'),
+        ('Jacó', 2022, 92, 'Conversión de viviendas a Airbnb', 'Parrita'),
+        ('Santa Teresa', 2023, 48, 'Incremento de precios y especulación', 'Cóbano'),
+        ('Playas del Coco', 2021, 62, 'Expansión de proyectos inmobiliarios', 'Sardinal'),
+        ('Cahuita', 2020, 36, 'Cambios en regulación de tierras', 'Bribrí'),
+        ('Bahía Ballena', 2023, 51, 'Urbanización turística', 'Uvita'),
+        ('Herradura', 2022, 27, 'Reemplazo de viviendas por hoteles', 'Puntarenas'),
+        ('Dominical', 2021, 44, 'Venta masiva a desarrolladores', 'San Isidro de El General')
+      `);
+    }
+  });
+
   // Insertar datos de ejemplo solo si está vacío
   db.get('SELECT COUNT(*) as count FROM barrios', (err, row) => {
     if (row.count === 0) {
@@ -160,6 +214,22 @@ app.get('/api/eventos_desplazamiento', (req, res) => {
 // 6. Segregacion Social
 app.get('/api/segregacion_social', (req, res) => {
   db.all('SELECT * FROM segregacion_social', (err, rows) => {
+    if (err) res.status(500).json({error: err});
+    else res.json(rows);
+  });
+});
+
+// 7. Desplazamiento Barrios
+app.get('/api/desplazamiento_barrios', (req, res) => {
+  db.all('SELECT * FROM desplazamiento_barrios', (err, rows) => {
+    if (err) res.status(500).json({error: err});
+    else res.json(rows);
+  });
+});
+
+// 8. Desplazamiento Zonas Costeras
+app.get('/api/desplazamiento_zonas_costeras', (req, res) => {
+  db.all('SELECT * FROM desplazamiento_zonas_costeras', (err, rows) => {
     if (err) res.status(500).json({error: err});
     else res.json(rows);
   });
