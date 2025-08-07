@@ -16,6 +16,7 @@ import TablaEventosDesplazamiento from './components/TablaEventosDesplazamiento'
 import TablaSegregacionSocial from './components/TablaSegregacionSocial';
 import TablaDesplazamientoBarrios from './components/TablaDesplazamientoBarrios';
 import TablaDesplazamientoZonasCosteras from './components/TablaDesplazamientoZonasCosteras';
+import TablaZonasGentrificacion from './components/TablaZonasGentrificacion';
 // Termina tabla
 import SeccionVideos from './components/SeccionVideos';
 import ContactoSoporte from './components/ContactoSoporte';
@@ -26,7 +27,7 @@ import { FaUserCircle, FaHeartBroken, FaRegSadTear } from 'react-icons/fa';
 import { GiMoneyStack } from "react-icons/gi";
 import { BsFillHousesFill } from "react-icons/bs";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-
+import { FaChartLine, FaStore, FaCity, FaPeopleArrows, FaLandmark, FaDollarSign } from "react-icons/fa";
 
 
 // Fix para íconos rotos en Leaflet
@@ -134,15 +135,38 @@ const SECCIONES = [
     id: 'elementos',
     nombre: 'Elementos de la gentrificación',
     contenido: (
-      <div>
-        <h2>🔎 Principales elementos</h2>
-        <ul className="elementos-lista">
-          <li>📈 Incremento en el valor de la propiedad y alquileres</li>
-          <li>🏪 Transformación del comercio local</li>
-          <li>🏗️ Renovación urbana y cambios en la infraestructura</li>
-          <li>🚶‍♂️ Desplazamiento de residentes originales</li>
-        </ul>
+      <div className="elementos-grid">
+      <div className="elemento-card">
+        <FaChartLine className="icon-elemento" />
+        <h3>Subida de precios</h3>
+        <p>El valor de la propiedad y alquileres se eleva, excluyendo a residentes originales.</p>
       </div>
+      <div className="elemento-card">
+        <FaStore className="icon-elemento" />
+        <h3>Cambio comercial</h3>
+        <p>Negocios tradicionales cierran y son reemplazados por tiendas gourmet y cafés.</p>
+      </div>
+      <div className="elemento-card">
+        <FaCity className="icon-elemento" />
+        <h3>Renovación urbana</h3>
+        <p>Mejoras en la infraestructura y espacios públicos atraen inversión y turismo.</p>
+      </div>
+      <div className="elemento-card">
+        <FaPeopleArrows className="icon-elemento" />
+        <h3>Desplazamiento</h3>
+        <p>Familias originales se mudan por no poder costear los nuevos precios.</p>
+      </div>
+      <div className="elemento-card">
+        <FaLandmark className="icon-elemento" />
+        <h3>Cambio de identidad</h3>
+        <p>El barrio pierde sus costumbres y tradiciones originales, cambiando su esencia.</p>
+      </div>
+      <div className="elemento-card">
+        <FaDollarSign className="icon-elemento" />
+        <h3>Especulación inmobiliaria</h3>
+        <p>La compra de propiedades para inversión acelera la gentrificación.</p>
+      </div>
+    </div>
     ),
   },
   {
@@ -276,7 +300,7 @@ function App() {
           )}
           {seccionActiva === 'elementos' && <TablaPreciosVivienda />}
           {seccionActiva === 'identidad' && <TablaNegociosLocales />}
-          {seccionActiva === 'mapa' && <TablaEventosDesplazamiento />}
+          {seccionActiva === 'mapa' && <TablaZonasGentrificacion />}
         </main>
         <footer className="footer">
           Copyright © {new Date().getFullYear()} GentriCR. Todos los derechos reservados. Desarrollado por Ian Mora.

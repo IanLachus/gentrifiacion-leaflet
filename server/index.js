@@ -121,6 +121,42 @@ db.serialize(() => {
     }
   });
 
+    // Tabla 9: Zonas Gentrificación
+  db.run(`CREATE TABLE IF NOT EXISTS zonas_gentrificacion (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    zona TEXT,
+    anio_inicio INTEGER,
+    descripcion TEXT
+  )`);
+
+  db.get('SELECT COUNT(*) as count FROM zonas_gentrificacion', (err, row) => {
+    if (row.count === 0) {
+      db.run(`INSERT INTO zonas_gentrificacion 
+        (zona, anio_inicio, descripcion) VALUES
+        ('Puntarenas Centro', 2010, 'El desarrollo turístico ha generado aumento en los precios y desplazamiento de comunidades costeras tradicionales.'),
+        ('Jacó', 2005, 'La construcción de condominios y hoteles de lujo ha provocado el aumento del costo de vida para los residentes originales.'),
+        ('Limón Centro', 2013, 'Las mejoras en infraestructura han atraído inversión turística que está desplazando a comunidades vulnerables.'),
+        ('Cahuita', 2015, 'El auge turístico ha transformado la economía local, afectando el acceso a vivienda para los residentes.'),
+        ('Puerto Viejo', 2011, 'Zona de alto turismo internacional, con desplazamiento cultural y encarecimiento de la vida.'),
+        ('Tamarindo', 2000, 'El turismo masivo ha convertido esta playa en un centro comercializado, con impacto en las comunidades locales.'),
+        ('Nosara', 2017, 'El crecimiento de villas de lujo y turismo de yoga ha aumentado la exclusión social y económica.'),
+        ('Santa Teresa', 2016, 'Popular entre extranjeros, los precios de propiedad y alquiler se han disparado.'),
+        ('Manuel Antonio', 2008, 'Zona de alto turismo donde los habitantes locales se ven desplazados por la expansión hotelera.'),
+        ('Dominical', 2014, 'El desarrollo inmobiliario para turistas ha reducido el acceso a servicios y tierras locales.'),
+        ('Herradura', 2009, 'El turismo de lujo ha reemplazado muchas viviendas tradicionales.'),
+        ('Playa Hermosa', 2018, 'El auge de surfistas extranjeros ha cambiado el tejido social local.'),
+        ('Playas del Coco', 2012, 'Gran cantidad de inversión extranjera ha desplazado a residentes por especulación inmobiliaria.'),
+        ('Sámara', 2019, 'La presión por convertir casas en Airbnb ha afectado a inquilinos locales.'),
+        ('Mal País', 2017, 'El crecimiento turístico ha generado desplazamiento de familias locales y aumento en precios.'),
+        ('Uvita', 2020, 'El auge de visitantes ha hecho que muchas casas se conviertan en alojamientos turísticos.'),
+        ('Monteverde', 2010, 'Aunque no está en la costa, se ha visto afectada por el turismo desmedido y alzas en la tierra.'),
+        ('Pochote', 2018, 'La construcción de proyectos turísticos ha despojado tierras comunales.'),
+        ('Isla Chira', 2021, 'Proyectos turísticos han generado tensiones entre desarrollo y conservación local.'),
+        ('Bahía Ballena', 2015, 'El turismo en auge ha generado un cambio en el uso del suelo, afectando a los habitantes.')
+      `);
+    }
+  });
+
   // Insertar datos de ejemplo solo si está vacío
   db.get('SELECT COUNT(*) as count FROM barrios', (err, row) => {
     if (row.count === 0) {
@@ -231,6 +267,14 @@ app.get('/api/desplazamiento_barrios', (req, res) => {
 app.get('/api/desplazamiento_zonas_costeras', (req, res) => {
   db.all('SELECT * FROM desplazamiento_zonas_costeras', (err, rows) => {
     if (err) res.status(500).json({error: err});
+    else res.json(rows);
+  });
+});
+
+// 9. Zonas Gentrificación
+app.get('/api/zonas_gentrificacion', (req, res) => {
+  db.all('SELECT * FROM zonas_gentrificacion', (err, rows) => {
+    if (err) res.status(500).json({ error: err });
     else res.json(rows);
   });
 });

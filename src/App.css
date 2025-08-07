@@ -481,3 +481,50 @@ main {
   margin-top: 8px;
   color: rgb(240, 233, 233);
 }
+
+.elementos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 28px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
+.elemento-card {
+  background: #f2fdf7;
+  border-radius: 18px;
+  box-shadow: 0 3px 14px 0 rgba(44, 62, 80, 0.09);
+  padding: 26px 18px 20px 18px;
+  text-align: center;
+  transition: box-shadow 0.17s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.elemento-card:hover {
+  box-shadow: 0 8px 38px 0 rgba(44,62,80,0.14);
+  background: #e8f5e9;
+}
+
+.icon-elemento {
+  font-size: 2.4rem;
+  color: #2e7d4f;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.elemento-card:hover .icon-elemento {
+  color: #43a047;
+}
+
+.elemento-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.17rem;
+  color: #26713d;
+}
+
+.elemento-card p {
+  font-size: 1rem;
+  color: #455a64;
+  margin: 0;
+}
