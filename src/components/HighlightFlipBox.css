@@ -1,0 +1,83 @@
+.flip-card {
+  background: transparent;
+  width: 245px;
+  height: 122px;
+  perspective: 700px;
+  cursor: pointer;
+  margin-bottom: 18px;
+  margin-right: 18px;
+  display: inline-block; /* permite separación horizontal */
+  outline: none;
+  vertical-align: top;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  text-align: center;
+  transition: transform 0.5s cubic-bezier(.4,2,.6,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%; height: 100%;
+  min-height: 110px;
+  max-height: 122px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(46,125,79,0.09);
+  background: #e8f5e9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px 6px 14px;
+  transition: background 0.3s;
+}
+.flip-card-front .highlight-title {
+  color: #218158;
+  font-weight: bold;
+  font-size: 1.09rem;
+  margin-top: 6px;
+}
+.flip-card-front .highlight-icon {
+  font-size: 2.2rem;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: #b6dfc7;
+  color: #247c4c;
+  overflow: auto; /* Si hay mucho texto, agrega scroll interno pero NO cambia el tamaño */
+}
+.flip-card-back .highlight-icon {
+  font-size: 2.0rem;
+}
+.highlight-desc {
+  font-size: 1.01rem;
+  margin-top: 5px;
+  word-break: break-word;
+  /* Limita a 4 líneas, si quieres truncar usa:
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  */
+}
+.flip-hint {
+  color: #268e59;
+  font-size: 0.9rem;
+  margin-top: 7px;
+  opacity: 0.65;
+}
+
+.info-flex-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 22px;  /* vertical, horizontal */
+  justify-content: center;
+  margin: 14px 0 5px 0;
+}

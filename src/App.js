@@ -3,10 +3,9 @@ import './App.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import Register from './components/Register'; // Moderno
-import Login from './components/Login'; // Moderno
+import Register from './components/Register';
+import Login from './components/Login'; 
 import Intro from './components/Intro';
-import { FaUserCircle } from 'react-icons/fa';
 import Main from './components/Main';
 import TablaBarrios from './components/TablaBarrios';
 import TablaEdificios from './components/TablaEdificios';
@@ -14,7 +13,17 @@ import TablaPreciosVivienda from './components/TablaPreciosVivienda';
 import TablaNegociosLocales from './components/TablaNegociosLocales';
 import TablaEventosDesplazamiento from './components/TablaEventosDesplazamiento';
 import TablaSegregacionSocial from './components/TablaSegregacionSocial';
+import SeccionVideos from './components/SeccionVideos';
+import ContactoSoporte from './components/ContactoSoporte';
+import HighlightFlipBox from "./components/HighlightFlipBox";
 import Navbar from './components/Navbar';
+// React Icons
+import { FaUserCircle, FaHeartBroken, FaRegSadTear } from 'react-icons/fa';
+import { GiMoneyStack } from "react-icons/gi";
+import { BsFillHousesFill } from "react-icons/bs";
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+
+
 
 // Fix para íconos rotos en Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -53,39 +62,70 @@ const SECCIONES = [
     nombre: 'Segregación social',
     contenido: (
       <div className="info-card">
-  <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-    <span role="img" aria-label="segregacion"></span>
-    Segregación social
-  </h2>
-  <p>
-  La <span className="resaltado">gentrificación</span> suele intensificar la <b>segregación social</b> en los barrios afectados. Al aumentar los precios de alquiler y de vivienda, las familias de menores ingresos se ven obligadas a mudarse a zonas periféricas, mientras que los nuevos residentes (generalmente de mayor poder adquisitivo) ocupan el espacio central. Esto provoca una <b>reducción en la diversidad social</b> y la pérdida de redes comunitarias, aumentando la desigualdad y dificultando la integración social.
-  <br /><br />
-  Además, la segregación <b>no</b> solo es económica, sino también cultural. La convivencia entre los antiguos y nuevos habitantes se ve <b>limitada</b>, pues los intereses, hábitos y valores pueden ser muy distintos. Esto puede generar conflictos y un <b>sentimiento de exclusión</b> para quienes han vivido en la comunidad por generaciones.
-  <br /><br />
-  Finalmente, la falta de políticas públicas que protejan a los residentes más vulnerables agrava este fenómeno, haciendo que los barrios pierdan parte de su historia y de su riqueza cultural, mientras se fortalecen dinámicas de exclusión social.
-</p>
-
-  <ul className="nice-list">
-    <li>Desplazamiento de familias tradicionales.</li>
-    <li>Cambios en el tejido social del barrio.</li>
-    <li>Reducción de actividades y espacios comunitarios.</li>
-  </ul>
-</div>
-
-    ),
-  },
-  {
-    id: 'desplazamiento',
-    nombre: 'Desplazamiento de habitantes',
-    contenido: (
-      <div>
-        <h2>🏠 Desplazamiento de habitantes</h2>
+        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+          <span role="img" aria-label="segregacion"></span>
+          Segregación social
+        </h2>
         <p>
-          El <span className="resaltado">aumento de precios</span> y la llegada de nuevos residentes suelen provocar el <b>desplazamiento</b> de habitantes originales, quienes ya no pueden costear la vida en su propio barrio.
+          La <span className="resaltado">gentrificación</span> suele intensificar la <b>segregación social</b> en los barrios afectados. Al aumentar los precios de alquiler y de vivienda, las familias de menores ingresos se ven obligadas a mudarse a zonas periféricas, mientras que los nuevos residentes (generalmente de mayor poder adquisitivo) ocupan el espacio central. Esto provoca una <b>reducción en la diversidad social</b> y la pérdida de redes comunitarias, aumentando la desigualdad y dificultando la integración social.
+          <br /><br />
+          Además, la segregación <b>no</b> solo es económica, sino también cultural. La convivencia entre los antiguos y nuevos habitantes se ve <b>limitada</b>, pues los intereses, hábitos y valores pueden ser muy distintos. Esto puede generar conflictos y un <b>sentimiento de exclusión</b> para quienes han vivido en la comunidad por generaciones.
+          <br /><br />
+          Finalmente, la falta de políticas públicas que protejan a los residentes más vulnerables agrava este fenómeno, haciendo que los barrios pierdan parte de su historia y de su riqueza cultural, mientras se fortalecen dinámicas de exclusión social.
         </p>
+
+        <ul className="nice-list">
+          <li>Desplazamiento de familias tradicionales.</li>
+          <li>Cambios en el tejido social del barrio.</li>
+          <li>Reducción de actividades y espacios comunitarios.</li>
+        </ul>
       </div>
     ),
   },
+  {
+  id: 'desplazamiento',
+  nombre: 'Desplazamiento de habitantes',
+  contenido: (
+    <div className="info-card info-modern">
+      <div className="icon-circle">
+        <span id='casita' role="img" aria-label="Casa desplazada" style={{ fontSize: 34 }}><BsFillHousesFill /></span>
+      </div>
+      <h2 className="info-title">Desplazamiento de habitantes</h2>
+      <p className="info-main">
+        La <span className="resaltado">gentrificación</span> trae consigo el <b>desplazamiento involuntario</b> de personas que han vivido durante años en el barrio, pues los precios de alquiler y vivienda aumentan drásticamente. Esto obliga a familias y adultos mayores a buscar zonas más asequibles, perdiendo lazos comunitarios y calidad de vida.
+      </p>
+
+      <div className="info-flex-highlights">
+        <HighlightFlipBox
+          icon={<FaHeartBroken color="#219150" />}
+          title="Ruptura de comunidad"
+          description="Familias deben separarse de vecinos y amigos de toda la vida."
+        />
+        <HighlightFlipBox
+          icon={<GiMoneyStack color="#219150" />}
+          title="Dificultad en servicios"
+          description="Mudanza a barrios lejanos encarece y dificulta la vida diaria."
+        />
+      </div>
+      <div className="info-flex-highlights">
+        <HighlightFlipBox
+          icon={<FaRegSadTear color="#219150" />}
+          title="Impacto emocional"
+          description="Estrés, ansiedad y sentimiento de pérdida del hogar."
+        />
+        <HighlightFlipBox
+          icon={<MdOutlineRemoveShoppingCart color="#219150" />}
+          title="Cierre de comercios"
+          description="Negocios de siempre desaparecen por falta de clientela habitual."
+        />
+      </div>
+
+      <p className="info-bottom" style={{ marginTop: 18 }}>
+        <b>¿Qué hacer?</b> Promover <span className="resaltado">vivienda asequible</span> y proteger a inquilinos son acciones clave para evitar el desplazamiento forzado y conservar la esencia de cada barrio.
+      </p>
+    </div>
+  ),
+},
   {
     id: 'elementos',
     nombre: 'Elementos de la gentrificación',
@@ -153,6 +193,7 @@ const SECCIONES = [
       </div>
     ),
   },
+  // ¡No agregues la sección de "videos" aquí!
 ];
 
 function App() {
@@ -205,6 +246,10 @@ function App() {
         <main>
           {!seccionActiva ? (
             <Intro />
+            ) : seccionActiva === "contacto" ? (
+            <ContactoSoporte />
+          ) : seccionActiva === 'videos' ? (
+            <SeccionVideos />
           ) : (
             <section className="info-section fadeIn">
               {seccionActiva === 'mapa'
@@ -213,7 +258,7 @@ function App() {
                     selectedZona,
                     onCerrar: handleCerrar,
                   })
-                : SECCIONES.find(sec => sec.id === seccionActiva).contenido}
+                : SECCIONES.find(sec => sec.id === seccionActiva)?.contenido}
             </section>
           )}
 

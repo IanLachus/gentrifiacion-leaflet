@@ -17,7 +17,7 @@ function TablaPreciosVivienda() {
       <table className="tabla-datos">
         <thead>
           <tr>
-            <th>Barrio ID</th>
+            {/* <th>Barrio ID</th> */}
             <th>Año</th>
             <th>Precio promedio</th>
             <th>Tipo</th>
@@ -26,7 +26,7 @@ function TablaPreciosVivienda() {
         <tbody>
           {precios.map(p => (
             <tr key={p.id}>
-              <td>{p.barrio_id}</td>
+              {/* <td>{p.barrio_id}</td> */}
               <td>{p.anio}</td>
               <td>{p.precio_promedio}</td>
               <td>{p.tipo}</td>

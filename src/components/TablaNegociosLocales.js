@@ -19,7 +19,7 @@ function TablaNegociosLocales() {
           <tr>
             <th>Nombre</th>
             <th>Tipo</th>
-            <th>Barrio ID</th>
+            {/* <th>Barrio ID</th> */}
             <th>Año apertura</th>
           </tr>
         </thead>
@@ -28,7 +28,7 @@ function TablaNegociosLocales() {
             <tr key={n.id}>
               <td>{n.nombre}</td>
               <td>{n.tipo}</td>
-              <td>{n.barrio_id}</td>
+              {/* <td>{n.barrio_id}</td> */}
               <td>{n.año_apertura}</td>
             </tr>
           ))}

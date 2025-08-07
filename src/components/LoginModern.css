@@ -42,7 +42,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: floatCircle 6s ease-in-out infinite alternate;
+  animation: floatCircle 4s ease-in-out infinite alternate;
   box-shadow: 0 8px 48px rgba(46, 125, 79, 0.12);
 }
 
@@ -210,4 +210,3 @@ body, html {
   user-select: none;
   pointer-events: none;
 }
-

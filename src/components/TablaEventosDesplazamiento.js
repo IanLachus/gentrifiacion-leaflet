@@ -17,7 +17,7 @@ function TablaEventosDesplazamiento() {
       <table className="tabla-datos">
         <thead>
           <tr>
-            <th>Barrio ID</th>
+            {/* <th>Barrio ID</th> */}
             <th>Año</th>
             <th>Personas desplazadas</th>
             <th>Causa</th>
@@ -26,7 +26,7 @@ function TablaEventosDesplazamiento() {
         <tbody>
           {eventos.map(ev => (
             <tr key={ev.id}>
-              <td>{ev.barrio_id}</td>
+              {/* <td>{ev.barrio_id}</td> */}
               <td>{ev.año}</td>
               <td>{ev.personas_desplazadas}</td>
               <td>{ev.causa}</td>
