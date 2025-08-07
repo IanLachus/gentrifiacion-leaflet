@@ -3,19 +3,19 @@ import "./SeccionVideos.css"; // Asegúrate de tener estilos para el grid
 
 const VIDEOS = [
   {
-    titulo: "¿Qué es la gentrificación? (El Orden Mundial)",
+    titulo: "La cruda realidad de la gentrificación",
     url: "https://www.youtube.com/embed/nqIQm9AYHE4?si=UFsjRlEMQG41W-ZE"
   },
   {
-    titulo: "¿Qué es la gentrificación y por qué es tan polémica?",
+    titulo: "Costa Rica: El paraíso vendido a los millonarios",
     url: "https://www.youtube.com/embed/BW1lDJzRyLA?si=wlpSjzxfe-mcVUQq"
   },
   {
-    titulo: "¿Cómo funciona la gentrificación?",
+    titulo: "Gentrificación en Costa Rica ¿Qué está pasando?",
     url: "https://www.youtube.com/embed/-1gxl3KXQ_s?si=yGMWokz5n58TNy1Q"
   },
   {
-    titulo: "Gentrificación: ¿Cómo afecta a las ciudades?",
+    titulo: "¿Playas privadas en Costa rica?",
     url: "https://www.youtube.com/embed/Pmem3bXt4fk?si=ZATsC-swGsjMtfQH"
   },
   {
@@ -23,15 +23,15 @@ const VIDEOS = [
     url: "https://www.youtube.com/embed/BW1lDJzRyLA?si=wlpSjzxfe-mcVUQq"
   },
   {
-    titulo: "Gentrificación y desplazamiento social",
+    titulo: "¿Qué es la gentrificación?",
     url: "https://www.youtube.com/embed/vlS_VZGPvC0?si=WOugZSrCBWRhzT9c"
   },
   {
-    titulo: "La gentrificación en Latinoamérica",
+    titulo: "Costa Rica NO ES como todos creen",
     url: "https://www.youtube.com/embed/_tgl-oAVQ4Q?si=BomVtq-EbJ7QcN7U"
   },
   {
-    titulo: "El fenómeno de la gentrificación explicado",
+    titulo: "Cosas que no sabía de la gentrificación",
     url: "https://www.youtube.com/embed/gvLZaBoXeOs?si=M9YxheI8Vj-lSFJe"
   }
 ];

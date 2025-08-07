@@ -17,11 +17,14 @@ import TablaSegregacionSocial from './components/TablaSegregacionSocial';
 import TablaDesplazamientoBarrios from './components/TablaDesplazamientoBarrios';
 import TablaDesplazamientoZonasCosteras from './components/TablaDesplazamientoZonasCosteras';
 import TablaZonasGentrificacion from './components/TablaZonasGentrificacion';
+import TablaIdentidadCultural from './components/TablaIdentidadCultural'; // Asegúrate de que este archivo exista
 // Termina tabla
 import SeccionVideos from './components/SeccionVideos';
 import ContactoSoporte from './components/ContactoSoporte';
 import HighlightFlipBox from "./components/HighlightFlipBox";
 import Navbar from './components/Navbar';
+import ChatRoom from './components/ChatRoom';
+import IdentidadCulturalFlipBox from './components/IdentidadCulturalFlipBox';
 // React Icons
 import { FaUserCircle, FaHeartBroken, FaRegSadTear } from 'react-icons/fa';
 import { GiMoneyStack } from "react-icons/gi";
@@ -170,16 +173,13 @@ const SECCIONES = [
     ),
   },
   {
-    id: 'identidad',
-    nombre: 'Identidad cultural',
-    contenido: (
-      <div>
-        <h2>🎭 Impacto en la identidad cultural</h2>
-        <p>
-          La llegada de nuevos habitantes y negocios puede <span className="resaltado">diluir o transformar la identidad cultural</span> de los barrios, perdiendo tradiciones y costumbres locales.
-        </p>
-      </div>
-    ),
+  id: 'identidad',
+  nombre: 'Identidad cultural',
+  contenido: (
+    <div>
+      <IdentidadCulturalFlipBox />
+    </div>
+  ),
   },
   {
     id: 'mapa',
@@ -298,9 +298,10 @@ function App() {
               <TablaDesplazamientoZonasCosteras />
             </div>
           )}
-          {seccionActiva === 'elementos' && <TablaPreciosVivienda />}
-          {seccionActiva === 'identidad' && <TablaNegociosLocales />}
+          {/* {seccionActiva === 'elementos' && <TablaPreciosVivienda />} */}
+          {seccionActiva === 'identidad' && <TablaIdentidadCultural />}
           {seccionActiva === 'mapa' && <TablaZonasGentrificacion />}
+          {seccionActiva === 'chat' && <ChatRoom />}
         </main>
         <footer className="footer">
           Copyright © {new Date().getFullYear()} GentriCR. Todos los derechos reservados. Desarrollado por Ian Mora.

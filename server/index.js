@@ -2,11 +2,61 @@ const express = require('express');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 
+// SOCKET.IO: Cargar dependencias y crear servidor http
+const http = require('http');
+const { Server } = require('socket.io');
+
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*", // Cambia a tu frontend si vas a producción
+    methods: ["GET", "POST"]
+  }
+});
+
 app.use(cors());
 app.use(express.json());
 
 const db = new sqlite3.Database('./gentrificacion.db');
+
+io.on('connection', (socket) => {
+  console.log('Usuario conectado al chat:', socket.id);
+
+  // Al conectar, envía los últimos 50 mensajes guardados
+  db.all('SELECT usuario, mensaje, fecha FROM chat_mensajes ORDER BY id ASC LIMIT 50', (err, rows) => {
+    socket.emit('historial', rows || []);
+  });
+
+  // Recibe mensajes nuevos
+  socket.on('chat-message', (data) => {
+    const fecha = new Date().toLocaleString('es-CR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      day: '2-digit',
+      month: '2-digit',
+      year: '2-digit'
+    });
+
+    // Guarda en la base de datos
+    db.run(
+      'INSERT INTO chat_mensajes (usuario, mensaje, fecha) VALUES (?, ?, ?)',
+      [data.usuario, data.mensaje, fecha],
+      function(err) {
+        if (!err) {
+          // Envía el mensaje a todos los conectados, con la fecha
+          io.emit('chat-message', { usuario: data.usuario, mensaje: data.mensaje, fecha });
+        }
+      }
+    );
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Usuario desconectado:', socket.id);
+  });
+});
+
 
 // CREACIÓN DE TABLAS Y DATOS DE EJEMPLO
 db.serialize(() => {
@@ -67,7 +117,7 @@ db.serialize(() => {
     observaciones TEXT
   )`);
 
-    // Tabla 7: Desplazamiento Barrios
+  // Tabla 7: Desplazamiento Barrios
   db.run(`CREATE TABLE IF NOT EXISTS desplazamiento_barrios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     barrio TEXT,
@@ -121,7 +171,7 @@ db.serialize(() => {
     }
   });
 
-    // Tabla 9: Zonas Gentrificación
+  // Tabla 9: Zonas Gentrificación
   db.run(`CREATE TABLE IF NOT EXISTS zonas_gentrificacion (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     zona TEXT,
@@ -156,6 +206,42 @@ db.serialize(() => {
       `);
     }
   });
+
+  // Tabla 10: Mensajes de chat
+  db.run(`CREATE TABLE IF NOT EXISTS mensajes_chat (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    usuario TEXT,
+    mensaje TEXT,
+    fecha TEXT
+  )`);
+
+  // Tabla 11: Identidad Cultural Afectada
+db.run(`CREATE TABLE IF NOT EXISTS identidad_cultural_afectada (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  lugar TEXT,
+  manifestaciones TEXT,
+  causa TEXT,
+  observaciones TEXT
+)`);
+
+db.get('SELECT COUNT(*) as count FROM identidad_cultural_afectada', (err, row) => {
+  if (row.count === 0) {
+    db.run(`INSERT INTO identidad_cultural_afectada (lugar, manifestaciones, causa, observaciones) VALUES
+      ('Barrio Amón',        'Arquitectura histórica, ferias de arte',              'Renovación urbana y hoteles',   'Pérdida de casas centenarias y galerías independientes.'),
+      ('Escalante',          'Cafés bohemios, festivales de barrio',                'Bares modernos y gourmet',      'Transformación en “zona foodie”, menos vida de vecindario.'),
+      ('Puerto Viejo',       'Cultura afrocaribeña, música calipso',                'Turismo masivo, Airbnbs',       'Menos eventos culturales locales, más fiestas para turistas.'),
+      ('Sámara',             'Celebraciones patronales, ferias',                    'Alquiler vacacional',           'Desplazan fiestas locales por eventos extranjeros.'),
+      ('Santa Teresa',       'Fiestas populares, surf local',                       'Colonización extranjera',       'Tiendas y restaurantes foráneos, menos idioma español.'),
+      ('San Pedro (UCR)',    'Librerías, cine alternativo',                         'Expansión comercial',           'Cierran librerías y cines para dar paso a franquicias.'),
+      ('Tamarindo',          'Celebraciones guanacastecas, rodeos',                 'Inversión extranjera',          'Tradiciones desplazadas por actividades turísticas.'),
+      ('Jacó',               'Cultura del surf tico, música en vivo',               'Mega-hoteles y discotecas',     'Música tradicional y eventos locales en retroceso.'),
+      ('Nosara',             'Mercados artesanales, talleres locales',              'Turismo de yoga/expats',        'Artesanía sustituida por souvenirs importados.'),
+      ('Barrio México',      'Danzas folclóricas, comidas típicas',                 'Renovación urbana',             'Menos celebraciones tradicionales, más comercios nuevos.')
+    `);
+  }
+});
+
+
 
   // Insertar datos de ejemplo solo si está vacío
   db.get('SELECT COUNT(*) as count FROM barrios', (err, row) => {
@@ -279,7 +365,16 @@ app.get('/api/zonas_gentrificacion', (req, res) => {
   });
 });
 
+// 10. Identidad Cultural Afectada
+app.get('/api/identidad_cultural_afectada', (req, res) => {
+  db.all('SELECT * FROM identidad_cultural_afectada', (err, rows) => {
+    if (err) res.status(500).json({error: err});
+    else res.json(rows);
+  });
+});
+
+
 const PORT = 4000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
 });
