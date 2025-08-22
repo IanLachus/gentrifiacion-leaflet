@@ -3,10 +3,10 @@
 Este proyecto corresponde al despliegue en Microsoft Azure de una aplicación web desarrollada en **React** con **React-Leaflet** para visualizar, registrar y analizar el impacto de la gentrificación en Costa Rica.
 
 ## 🌐 Enlace público de la aplicación
-[https://TU-URL-DE-AZURE](https://TU-URL-DE-AZURE)
+https://158.158.8.100:3000
 
 ## 📂 Repositorio
-[GitHub Repo](https://github.com/TU-USUARIO/TU-REPO)
+https://github.com/IanLachus/gentrifiacion-leaflet.git
 
 ---
 
@@ -25,7 +25,7 @@ Se utilizó una **arquitectura monolítica** con los siguientes componentes:
 | Servicio              | Función                                      | Justificación |
 |-----------------------|----------------------------------------------|---------------|
 | **App Service**       | Hospedaje del frontend + backend             | Simplicidad de despliegue, escalabilidad básica |
-| **Azure SQL Database**| Persistencia de datos de zonas, usuarios y tablas | Requiere consultas estructuradas |
+| **SQLite**            | Persistencia de datos de zonas, usuarios y tablas | Requiere consultas estructuradas |
 | **Azure Storage**     | Almacenamiento de recursos estáticos (imágenes, mapas) | Bajo costo y alta disponibilidad |
 | **Azure Monitor**     | Métricas y monitoreo                        | Seguimiento de rendimiento |
 
@@ -33,7 +33,7 @@ Se utilizó una **arquitectura monolítica** con los siguientes componentes:
 
 ## 🛠️ Proceso de despliegue
 1. Creación de **App Service** para frontend y backend.
-2. Creación de **Azure SQL Database** e importación del esquema (5 tablas).
+2. Creación de **SQLite** e importación del esquema (13 tablas).
 3. Configuración de **conexión segura** entre App Service y SQL.
 4. Subida del código vía GitHub Actions (CI/CD).
 5. Validación de la URL pública y pruebas de funcionamiento.
@@ -42,7 +42,7 @@ Se utilizó una **arquitectura monolítica** con los siguientes componentes:
 
 ## 🔒 Seguridad
 - Restricciones de acceso a la base de datos solo desde el App Service.
-- Configuración de firewall en Azure SQL Database.
+- Configuración de firewall en SQLite.
 - Uso de credenciales seguras con variables de entorno en App Service.
 
 ---
