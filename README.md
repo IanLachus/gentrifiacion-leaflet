@@ -1,68 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Proyecto: Gentrificación CR – Despliegue en Azure
 
-## Available Scripts
+Este proyecto corresponde al despliegue en Microsoft Azure de una aplicación web desarrollada en **React** con **React-Leaflet** para visualizar, registrar y analizar el impacto de la gentrificación en Costa Rica.
 
-In the project directory, you can run:
+## 🌐 Enlace público de la aplicación
+[https://TU-URL-DE-AZURE](https://TU-URL-DE-AZURE)
 
-### `npm start`
+## 📂 Repositorio
+[GitHub Repo](https://github.com/TU-USUARIO/TU-REPO)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 🚀 Arquitectura elegida
+Se utilizó una **arquitectura monolítica** con los siguientes componentes:
 
-### `npm test`
+- **Frontend:** React + React-Leaflet, desplegado en Azure App Service.
+- **Backend:** Node.js con Express para exponer API REST.
+- **Base de datos:** Azure SQL Database para almacenamiento estructurado de datos.
+- **Almacenamiento:** Azure Storage para recursos estáticos.
+- **Exposición pública:** URL pública vía App Service.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Servicios de Azure utilizados
+| Servicio              | Función                                      | Justificación |
+|-----------------------|----------------------------------------------|---------------|
+| **App Service**       | Hospedaje del frontend + backend             | Simplicidad de despliegue, escalabilidad básica |
+| **Azure SQL Database**| Persistencia de datos de zonas, usuarios y tablas | Requiere consultas estructuradas |
+| **Azure Storage**     | Almacenamiento de recursos estáticos (imágenes, mapas) | Bajo costo y alta disponibilidad |
+| **Azure Monitor**     | Métricas y monitoreo                        | Seguimiento de rendimiento |
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## 🛠️ Proceso de despliegue
+1. Creación de **App Service** para frontend y backend.
+2. Creación de **Azure SQL Database** e importación del esquema (5 tablas).
+3. Configuración de **conexión segura** entre App Service y SQL.
+4. Subida del código vía GitHub Actions (CI/CD).
+5. Validación de la URL pública y pruebas de funcionamiento.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🔒 Seguridad
+- Restricciones de acceso a la base de datos solo desde el App Service.
+- Configuración de firewall en Azure SQL Database.
+- Uso de credenciales seguras con variables de entorno en App Service.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📸 Capturas
+- Interfaz principal con mapa Leaflet.
+- Tablas de datos conectadas a SQL.
+- Evidencia de despliegue en Azure.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## ✅ Conclusiones
+Este despliegue demuestra cómo una arquitectura **monolítica en Azure** es suficiente para un sistema académico de análisis social.  
+Las mejoras futuras incluyen migrar a microservicios para escalabilidad y usar Azure Functions para procesamiento serverless.
